@@ -39,15 +39,15 @@
         let step;
         let boundingRect;
         let temp = 0;
-        for(let i = 0; i< stepElement.length; i++) {
+            //현재 보이는 부분, 보이는 전 부분, 보이는 다음 부분 세번만 체크 되게.
+            for(let i = ioIndex -1; i< ioIndex +2; i++) {
             step=stepElement[i];
+            if(!step) continue;
+
             boundingRect = step.getBoundingClientRect();
-            temp++;
             //창 사이즈 높이를 기준으로 100으로 했을 때 80% 정도 들어오면
-            
             if(boundingRect.top > window.innerHeight * 0.1 && boundingRect.top < window.innerHeight * 0.8) {
                 //몇 번 째 인덱스가 나오는지
-                // console.log(step.dataset.index);
                 if(currentItem) {
                     inactivate();
                 }
@@ -56,7 +56,6 @@
                 activate();
             }
         }
-        console.log(temp);
     });
 
     activate();
