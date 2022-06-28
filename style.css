@@ -4,13 +4,67 @@ html {
 body {
 	margin: 0;
 }
+
 div, section, header, footer, p, h1, h2 {
+/* 내부 패딩이나 보더가 width, height에 포함되게  */
 	box-sizing: border-box;
 }
 a {
 	color: royalblue;
 }
+
+/* 반응형으로 잘 동작하도록 컨테이너가 줄어들었을 때 같이 줄어들 수 있도록. */
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+/* 전체 폭을 결정할 클래스 */
+.global-width {
+	max-width: 620px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+/* 화면에 꽉 차고 크기에 상관없이 가운데 정렬.
+이미지 컨테이너 자체를 화면 사이즈에 꽉 차게 하고 거기서 센터정렬 */
+.graphic-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	left:0;
+	top:0;
+
+	width: 100%;
+	height: 100%;
+}
+
+.scroll-graphic {
+	position: sticky;
+	/* stikcy가 적용된 엘리멘트가 Top 지정된 위치로 오면 붙음 */
+	top:0; 
+	height: 100vh;
+
+}
+
+.scroll-text {
+	position: relative;
+	/* 상하단 margin 병합 현상 때문에 넣음 */
+	padding-bottom: 1px;
+}
+
+/* 각 말풍선 */
+.step{
+	margin-bottom : 60vh;
+	background: rgba(255, 255, 255, 0.8 );
+	box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+	/* 폰트 사이즈 기준으로 패딩을 주겠음 */
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+}
+
+/* 각 이미지 */
+.scene-img {
+	max-height: 100vh;
 }
