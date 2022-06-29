@@ -85,6 +85,12 @@
         }
     });
 
+    window.addEventListener('load', ()=> {
+        //문서가 로드 되면 실행. 원래 addEvent~ 뒤에 false 등을 넣어서 버블링 방지하거나 할 수 있음.
+        //좀 뒤에 실행되어야 잘됨.
+        setTimeout(()=> scrollTo(0,0),100);
+    });
+
     activate();
 })();
 

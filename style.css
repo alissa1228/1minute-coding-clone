@@ -42,6 +42,7 @@ img {
 	opacity: 0;
 	/* 부드럽게 나와야하니까 */
 	transition: 0.5s;
+	will-change: opacity;
 }
 
 .visible {
@@ -93,4 +94,13 @@ img {
 [data-index="5"] .bird {
 	left: 30%;
 	bottom : 30%;
+}
+
+.global-footer {
+	padding: 2rem 0;
+	text-align: center;
+}
+
+.strikethrough {
+	text-decoration: line-through;
 }
