@@ -2,6 +2,26 @@
 (()=> {
     //이 안에서 변수를 만들면 지역변수가 되기 때문에 바깥에서 접근할 수 없음. -> 보호가 됨!
 
+    const actions = {
+        birdFlies(key) {
+            if(key) {
+            //부모의 데이터 index 정보 이용해서 셀릭트
+            //해당 selector로 뽑은 곳에 x으로 윈도우의 inner width 픽셀 만큼 날아가도록
+                document.querySelector('[data-index="2"] .bird').style.transform=`translateX(${window.innerWidth}px)`;
+            } else {
+                document.querySelector('[data-index="2"] .bird').style.transform=`translateX(-100%)`;
+            }
+    },
+
+     birdFlies2(key) {
+            if(key) {
+                document.querySelector('[data-index="5"] .bird').style.transform=`translate(${window.innerWidth}px,${-window.innerHeight * 0.7}px)`;
+            } else {
+                document.querySelector('[data-index="5"] .bird').style.transform=`translateX(-100%)`;
+            }
+    }
+    }
+
     const stepElement = document.querySelectorAll('.step');
     const graphElement = document.querySelectorAll('.graphic-item');
     let currentItem = graphElement[0]; //현재 활성화된 visible 클래스가 붙은 graphic-item;
@@ -24,13 +44,19 @@
     }
 
     //Current visible 붙여주기
-    function activate() {
+    function activate(action) {
         currentItem.classList.add('visible');
+        if(action) {
+            actions[action](true);
+        }
     }
 
     // "" 삭제
-    function inactivate() {
+    function inactivate(action) {
         currentItem.classList.remove('visible');
+        if(action) {
+            actions[action](false);
+        }
     }
     
     //스크롤 이벤트가 발생할 때 
@@ -38,7 +64,7 @@
         //말풍선들의 위치 체크.
         let step;
         let boundingRect;
-        let temp = 0;
+
             //현재 보이는 부분, 보이는 전 부분, 보이는 다음 부분 세번만 체크 되게.
             for(let i = ioIndex -1; i< ioIndex +2; i++) {
             step=stepElement[i];
@@ -49,11 +75,12 @@
             if(boundingRect.top > window.innerHeight * 0.1 && boundingRect.top < window.innerHeight * 0.8) {
                 //몇 번 째 인덱스가 나오는지
                 if(currentItem) {
-                    inactivate();
+                    inactivate(currentItem.dataset.action);
                 }
 
+                //action 가져오기
                 currentItem = graphElement[step.dataset.index];
-                activate();
+                activate(currentItem.dataset.action);
             }
         }
     });
