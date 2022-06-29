@@ -42,6 +42,7 @@ img {
 	opacity: 0;
 	/* 부드럽게 나와야하니까 */
 	transition: 0.5s;
+	will-change: opacity;
 }
 
 .visible {
@@ -49,6 +50,8 @@ img {
 }
 
 .scroll-graphic {
+	/* 새 날아가는 것 때문에 x축 스크롤이 생겨서 x축 hidden 주기  */
+	overflow-x : hidden;
 	position: sticky;
 	/* stikcy가 적용된 엘리멘트가 Top 지정된 위치로 오면 붙음 */
 	top:0; 
@@ -75,4 +78,29 @@ img {
 /* 각 이미지 */
 .scene-img {
 	max-height: 100vh;
+}
+
+.bird {
+	/* 새가 위로 올라갸아하니까 */
+	position: absolute;
+	left: 0;
+	bottom : 70%;
+	width: 100px;
+	transform: translateX(-100%);
+	transition: 1.5s 0.5s linear;
+
+	/* linear : 속도를 일정하게.*/
+}
+[data-index="5"] .bird {
+	left: 30%;
+	bottom : 30%;
+}
+
+.global-footer {
+	padding: 2rem 0;
+	text-align: center;
+}
+
+.strikethrough {
+	text-decoration: line-through;
 }
